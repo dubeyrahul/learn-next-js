@@ -8,18 +8,20 @@ import {
   Revenue,
 } from './definitions';
 import { formatCurrency } from './utils';
+import { getRevenue } from 'app/query/route';
 
 export async function fetchRevenue() {
   try {
     // Artificially delay a response for demo purposes.
     // Don't do this in production :)
 
-    // console.log('Fetching revenue data...');
-    // await new Promise((resolve) => setTimeout(resolve, 3000));
+    console.log('Fetching revenue data...');
+    await new Promise((resolve) => setTimeout(resolve, 3000));
 
     const data = await sql<Revenue>`SELECT * FROM revenue`;
-
-    // console.log('Data fetch completed after 3 seconds.');
+    // const data = await getRevenue();
+    console.log(await getRevenue());
+    console.log('Data fetch completed after 3 seconds.');
 
     return data.rows;
   } catch (error) {
