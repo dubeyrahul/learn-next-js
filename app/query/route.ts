@@ -13,7 +13,7 @@ async function listInvoices() {
 	return data.rows;
 }
 
-export async function getRevenue() {
+async function getRevenue() {
   const data = await client.sql`
     SELECT * FROM revenue`;
 

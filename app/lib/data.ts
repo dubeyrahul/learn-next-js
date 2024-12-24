@@ -8,7 +8,12 @@ import {
   Revenue,
 } from './definitions';
 import { formatCurrency } from './utils';
-import { getRevenue } from 'app/query/route';
+
+async function getRevenue() {
+  const data = await sql`
+    SELECT * FROM revenue`;
+  return data.rows;
+}
 
 export async function fetchRevenue() {
   try {
@@ -19,7 +24,6 @@ export async function fetchRevenue() {
     await new Promise((resolve) => setTimeout(resolve, 3000));
 
     const data = await sql<Revenue>`SELECT * FROM revenue`;
-    // const data = await getRevenue();
     console.log(await getRevenue());
     console.log('Data fetch completed after 3 seconds.');
 
